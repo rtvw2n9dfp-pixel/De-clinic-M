@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>نظام إدارة عيادة الأسنان</title>
+<style>
+:root{--navy:#14263d;--blue:#2367a8;--teal:#1a9988;--bg:#f4f7fb;--line:#e2e8f0;--text:#1e293b;--muted:#64748b;--white:#fff;--red:#c24141;--gold:#b7791f}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:9px;padding:10px 14px;background:var(--blue);color:white}button.secondary{background:#e8eef6;color:var(--navy)}button.danger{background:#fff0f0;color:var(--red)}.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}.sidebar{background:var(--navy);color:#fff;padding:22px 14px}.brand{font-size:20px;font-weight:bold;padding:8px 12px 22px}.brand small{display:block;color:#a8c3df;font-size:12px;margin-top:8px;font-weight:normal}.nav{display:grid;gap:6px}.nav button{background:transparent;text-align:right;color:#dbe7f5;border-radius:10px;padding:12px}.nav button.active,.nav button:hover{background:#294563;color:#fff}.sidebar .foot{margin-top:30px;padding:12px;color:#a8c3df;font-size:12px;line-height:1.8}.main{min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 26px;background:white;border-bottom:1px solid var(--line)}.topbar h1{font-size:22px;margin:0}.topbar p{margin:6px 0 0;color:var(--muted);font-size:13px}.top-actions{display:flex;gap:8px;align-items:center}.top-actions select{max-width:180px}.content{padding:24px;max-width:1500px;margin:auto}.notice{background:#edf7ff;border:1px solid #cfe5fb;padding:12px 14px;border-radius:12px;margin-bottom:18px;font-size:13px;line-height:1.8}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card{background:white;border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 2px 8px #14263d08}.metric .label{color:var(--muted);font-size:13px}.metric .value{font-size:25px;font-weight:bold;margin:10px 0 5px}.metric .sub{font-size:12px;color:var(--muted)}.section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:24px 0 12px}.section-title h2{font-size:17px;margin:0}.two{display:grid;grid-template-columns:1.2fr 1fr;gap:14px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:13px}th,td{text-align:right;padding:12px 10px;border-bottom:1px solid #edf1f6}th{color:var(--muted);font-weight:600;background:#fafbfd}tr:last-child td{border-bottom:0}.pill{display:inline-block;border-radius:30px;padding:4px 8px;font-size:11px;background:#e7f7f2;color:#137a68}.pill.warn{background:#fff5df;color:#9a6815}.pill.red{background:#fff0f0;color:#b93838}.page{display:none}.page.active{display:block}.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}.toolbar input,.toolbar select{max-width:300px}.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:grid;gap:6px}.field label{font-size:12px;color:var(--muted)}input,select,textarea{border:1px solid #d6deea;border-radius:9px;padding:10px;background:white;color:var(--text);min-width:0;width:100%}.form-card{margin-bottom:16px}.form-card h3{margin:0 0 14px;font-size:15px}.form-actions{display:flex;gap:8px;margin-top:14px}.empty{padding:25px;text-align:center;color:var(--muted)}.small{font-size:12px;color:var(--muted)}.warning-text{color:var(--red)}.footer-note{margin-top:18px;color:var(--muted);font-size:12px;line-height:1.8}.mini-btn{padding:6px 9px;font-size:12px}.mobile-menu{display:none}
+@media(max-width:900px){.app{grid-template-columns:1fr}.sidebar{padding:12px}.brand{padding:5px 8px 12px}.nav{grid-template-columns:repeat(4,minmax(0,1fr))}.nav button{text-align:center;padding:9px 4px;font-size:12px}.sidebar .foot{display:none}.topbar{padding:14px 16px}.content{padding:15px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}}
+@media(max-width:520px){.topbar{align-items:flex-start;flex-direction:column}.top-actions{width:100%;flex-wrap:wrap}.nav{grid-template-columns:repeat(3,minmax(0,1fr))}.grid{gap:8px}.card{padding:13px}.metric .value{font-size:20px}.field-grid{grid-template-columns:1fr}.content{padding:10px}.topbar h1{font-size:19px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">🦷 عيادتي <small>نظام إدارة عيادة الأسنان · نسخة تجريبية</small></div>
+  <nav class="nav" id="nav">
+    <button class="active" data-page="dashboard">▦ الرئيسية</button>
+    <button data-page="patients">♙ المرضى</button>
+    <button data-page="treatments">✚ العلاج والحالات</button>
+    <button data-page="payments">⇄ التحصيلات</button>
+    <button data-page="expenses">↘ المصروفات</button>
+    <button data-page="inventory">▤ المخزون</button>
+    <button data-page="suppliers">▣ الموردون</button>
+    <button data-page="doctors">⚕ الأطباء</button>
+    <button data-page="reports">▥ التقارير</button>
+    <button data-page="settings">⚙ الإعدادات</button>
+  </nav>
+  <div class="foot">نسخة أولية للاختبار<br>البيانات محفوظة محليًا في هذا المتصفح فقط.<br>لا تستخدمها لحفظ بيانات مرضى حقيقية قبل إعداد الأمان والنسخ الاحتياطي.</div>
+</aside>
+<main class="main">
+<header class="topbar">
+  <div><h1 id="pageTitle">لوحة التحكم</h1><p id="today"></p></div>
+  <div class="top-actions">
+    <select id="role" aria-label="الدور الوظيفي">
+      <option value="owner">المالك / المدير</option><option value="reception">الاستقبال</option><option value="accountant">المحاسب</option><option value="doctor">الطبيب</option>
+    </select>
+    <button class="secondary" id="exportBtn">تصدير نسخة JSON</button>
+  </div>
+</header>
+<div class="content">
+<div class="notice"><b>مهم:</b> هذه نسخة MVP محلية لتجربة سير العمل. تسجيل العلاج لا يضيف تحصيلًا تلقائيًا؛ التحصيل يسجَّل مرة واحدة فقط في شاشة التحصيلات، والتقارير تعتمد على سجل التحصيلات والمصروفات المسجلة.</div>
+
+<section class="page active" id="page-dashboard">
+  <div class="grid" id="metrics"></div>
+  <div class="section-title"><h2>آخر الحركات المالية</h2><button class="secondary" onclick="showPage('payments')">عرض كل التحصيلات</button></div>
+  <div class="card table-wrap"><table><thead><tr><th>التاريخ</th><th>المريض</th><th>نوع الحركة</th><th>طريقة الدفع</th><th>القيمة</th></tr></thead><tbody id="recentPayments"></tbody></table></div>
+  <div class="two">
+    <div><div class="section-title"><h2>تنبيهات المخزون</h2><button class="secondary" onclick="showPage('inventory')">فتح المخزون</button></div><div class="card table-wrap"><table><thead><tr><th>الصنف</th><th>المتاح</th><th>حد الطلب</th></tr></thead><tbody id="stockAlerts"></tbody></table></div></div>
+    <div><div class="section-title"><h2>ملخص تشغيلي</h2></div><div class="card" id="opsSummary"></div></div>
+  </div>
+</section>
+
+<section class="page" id="page-patients">
+  <div class="section-title"><h2>ملفات المرضى</h2></div>
+  <div class="card form-card"><h3>إضافة مريض</h3><form id="patientForm"><div class="field-grid">
+    <div class="field"><label>اسم المريض *</label><input name="name" required></div><div class="field"><label>رقم الهاتف</label><input name="phone" inputmode="tel"></div>
+    <div class="field"><label>تاريخ الميلاد</label><input name="dob" type="date"></div><div class="field"><label>ملاحظات / حساسية / تاريخ مرضي</label><input name="notes"></div>
+  </div><div class="form-actions"><button>حفظ ملف المريض</button></div></form></div>
+  <div class="toolbar"><input id="patientSearch" placeholder="ابحث بالاسم أو الهاتف…"></div>
+  <div class="card table-wrap"><table><thead><tr><th>كود</th><th>اسم المريض</th><th>الهاتف</th><th>إجمالي العلاج</th><th>المدفوع</th><th>المتبقي</th><th>تاريخ الإضافة</th></tr></thead><tbody id="patientsTable"></tbody></table></div>
+</section>
+
+<section class="page" id="page-treatments">
+  <div class="section-title"><h2>خطة العلاج والحالات</h2></div>
+  <div class="card form-card"><h3>تسجيل إجراء / خطة علاج</h3><form id="treatmentForm"><div class="field-grid">
+    <div class="field"><label>المريض *</label><select name="patientId" id="treatPatient" required></select></div><div class="field"><label>الإجراء العلاجي *</label><input name="procedure" required placeholder="مثال: حشو كومبوزيت"></div>
+    <div class="field"><label>الطبيب</label><select name="doctorId" id="treatDoctor"></select></div><div class="field"><label>قيمة الإجراء بالجنيه *</label><input name="amount" type="number" min="0" step=".01" required></div>
+    <div class="field"><label>الحالة</label><select name="status"><option>مخطط</option><option>بدأ</option><option>مكتمل</option><option>ملغي</option></select></div><div class="field"><label>تاريخ الإجراء</label><input name="date" type="date" id="treatDate"></div>
+    <div class="field"><label>تكلفة الخامات التقديرية (اختياري)</label><input name="materialCost" type="number" min="0" step=".01" value="0"></div><div class="field"><label>ملاحظات</label><input name="notes"></div>
+  </div><div class="form-actions"><button>حفظ الإجراء</button></div></form><p class="small">تسجيل الإجراء يضيف قيمة العلاج لحساب المريض فقط، ولا ينشئ حركة نقدية تلقائية.</p></div>
+  <div class="card table-wrap"><table><thead><tr><th>التاريخ</th><th>المريض</th><th>الإجراء</th><th>الطبيب</th><th>القيمة</th><th>تكلفة الخامات</th><th>الحالة</th></tr></thead><tbody id="treatmentsTable"></tbody></table></div>
+</section>
+
+<section class="page" id="page-payments">
+  <div class="section-title"><h2>التحصيلات وحركة الخزنة</h2></div>
+  <div class="card form-card"><h3>تسجيل تحصيل أو رد مبلغ</h3><form id="paymentForm"><div class="field-grid">
+    <div class="field"><label>نوع الحركة *</label><select name="type"><option value="in">تحصيل من مريض</option><option value="refund">رد مبلغ لمريض</option><option value="otherIn">إيراد آخر</option><option value="otherOut">صرف من الخزنة</option></select></div>
+    <div class="field"><label>المريض (إن وجد)</label><select name="patientId" id="paymentPatient"></select></div>
+    <div class="field"><label>المبلغ بالجنيه *</label><input name="amount" type="number" min=".01" step=".01" required></div><div class="field"><label>طريقة الدفع</label><select name="method"><option>كاش</option><option>تحويل بنكي</option><option>بطاقة</option><option>محفظة إلكترونية</option></select></div>
+    <div class="field"><label>التاريخ</label><input name="date" type="date" id="paymentDate"></div><div class="field"><label>مرجع / ملاحظات</label><input name="notes" placeholder="رقم إيصال أو سبب الحركة"></div>
+  </div><div class="form-actions"><button>تسجيل الحركة</button></div></form><p class="small">كل حركة مالية تُسجل هنا مرة واحدة. لا تُسجّل المبلغ المدفوع مرة أخرى كمصروف أو كعلاج.</p></div>
+  <div class="toolbar"><select id="paymentFilter"><option value="all">كل الحركات</option><option value="in">التحصيلات</option><option value="refund">المبالغ المرتجعة</option><option value="otherIn">إيرادات أخرى</option><option value="otherOut">مصروفات من الخزنة</option></select></div>
+  <div class="card table-wrap"><table><thead><tr><th>رقم</th><th>التاريخ</th><th>المريض</th><th>الحركة</th><th>طريقة الدفع</th><th>المبلغ</th><th>ملاحظات</th></tr></thead><tbody id="paymentsTable"></tbody></table></div>
+</section>
+
+<section class="page" id="page-expenses">
+  <div class="section-title"><h2>المصروفات والالتزامات</h2></div>
+  <div class="card form-card"><h3>تسجيل مصروف</h3><form id="expenseForm"><div class="field-grid">
+    <div class="field"><label>بند المصروف *</label><input name="category" required placeholder="إيجار، كهرباء، خامات…"></div><div class="field"><label>المبلغ بالجنيه *</label><input name="amount" type="number" min=".01" step=".01" required></div>
+    <div class="field"><label>التاريخ</label><input name="date" type="date" id="expenseDate"></div><div class="field"><label>طريقة الدفع</label><select name="method"><option>كاش</option><option>تحويل بنكي</option><option>بطاقة</option></select></div>
+    <div class="field"><label>المورد (اختياري)</label><select name="supplierId" id="expenseSupplier"></select></div><div class="field"><label>ملاحظات / رقم فاتورة</label><input name="notes"></div>
+  </div><div class="form-actions"><button>حفظ المصروف</button></div></form><p class="small">المصروف يُسجَّل في تقرير المصروفات. إذا كان مدفوعًا من خزنة العيادة، يُحسب كذلك ضمن صافي حركة النقد مرة واحدة.</p></div>
+  <div class="card table-wrap"><table><thead><tr><th>التاريخ</th><th>البند</th><th>المورد</th><th>طريقة الدفع</th><th>المبلغ</th><th>ملاحظات</th></tr></thead><tbody id="expensesTable"></tbody></table></div>
+</section>
+
+<section class="page" id="page-inventory">
+  <div class="section-title"><h2>المخزون والخامات</h2></div>
+  <div class="card form-card"><h3>إضافة صنف / تحديث رصيد</h3><form id="inventoryForm"><div class="field-grid">
+    <div class="field"><label>اسم الصنف *</label><input name="name" required></div><div class="field"><label>وحدة القياس</label><input name="unit" placeholder="علبة، قطعة، سرنجة…" value="قطعة"></div>
+    <div class="field"><label>الرصيد الحالي *</label><input name="qty" type="number" min="0" step=".01" required></div><div class="field"><label>حد إعادة الطلب</label><input name="minQty" type="number" min="0" step=".01" value="2"></div>
+    <div class="field"><label>متوسط تكلفة الوحدة بالجنيه</label><input name="cost" type="number" min="0" step=".01" value="0"></div><div class="field"><label>تاريخ الصلاحية (اختياري)</label><input name="expiry" type="date"></div>
+  </div><div class="form-actions"><button>حفظ الصنف</button></div></form><p class="small">هذه النسخة تسجل الرصيد والتكلفة الأساسية. صرف الخامات للحالات وتسوية الهالك وسجل الدُفعات والصلاحية التفصيلي ضمن مرحلة التطوير التالية.</p></div>
+  <div class="card table-wrap"><table><thead><tr><th>الصنف</th><th>الرصيد</th><th>الوحدة</th><th>حد الطلب</th><th>تكلفة الوحدة</th><th>قيمة المخزون</th><th>الصلاحية</th><th>الحالة</th></tr></thead><tbody id="inventoryTable"></tbody></table></div>
+</section>
+
+<section class="page" id="page-suppliers">
+  <div class="section-title"><h2>الموردون</h2></div>
+  <div class="card form-card"><h3>إضافة مورد</h3><form id="supplierForm"><div class="field-grid">
+    <div class="field"><label>اسم المورد *</label><input name="name" required></div><div class="field"><label>رقم الهاتف</label><input name="phone"></div><div class="field"><label>الرصيد المستحق للمورد بالجنيه</label><input name="balance" type="number" min="0" step=".01" value="0"></div><div class="field"><label>ملاحظات</label><input name="notes"></div>
+  </div><div class="form-actions"><button>حفظ المورد</button></div></form></div>
+  <div class="card table-wrap"><table><thead><tr><th>المورد</th><th>الهاتف</th><th>الرصيد المستحق</th><th>ملاحظات</th></tr></thead><tbody id="suppliersTable"></tbody></table></div>
+</section>
+
+<section class="page" id="page-doctors">
+  <div class="section-title"><h2>الأطباء ومستحقاتهم</h2></div>
+  <div class="card form-card"><h3>إضافة طبيب</h3><form id="doctorForm"><div class="field-grid">
+    <div class="field"><label>اسم الطبيب *</label><input name="name" required></div><div class="field"><label>رقم الهاتف</label><input name="phone"></div><div class="field"><label>نظام الأجر</label><select name="payType"><option>نسبة</option><option>مبلغ ثابت</option></select></div><div class="field"><label>النسبة % أو المبلغ الثابت</label><input name="payValue" type="number" min="0" step=".01" value="0"></div>
+  </div><div class="form-actions"><button>حفظ الطبيب</button></div></form><p class="small">حساب مستحقات الطبيب النهائي يجب أن يعتمد على سياسة العيادة: نسبة من العلاج أم التحصيل، مع تحديد الخصومات وتكلفة المعمل والخامات.</p></div>
+  <div class="card table-wrap"><table><thead><tr><th>الطبيب</th><th>الهاتف</th><th>نظام الأجر</th><th>القيمة</th><th>حالات مسجلة</th><th>قيمة الحالات المكتملة</th></tr></thead><tbody id="doctorsTable"></tbody></table></div>
+</section>
+
+<section class="page" id="page-reports">
+  <div class="section-title"><h2>التقارير المالية والتشغيلية</h2><button id="printReport" class="secondary">طباعة التقرير</button></div>
+  <div class="toolbar"><label>من <input type="date" id="reportFrom"></label><label>إلى <input type="date" id="reportTo"></label><button id="runReport">تحديث التقرير</button></div>
+  <div class="grid" id="reportMetrics"></div>
+  <div class="two">
+    <div class="card"><h3>ملخص مالي</h3><div id="financialSummary"></div></div>
+    <div class="card"><h3>ملخص العلاج</h3><div id="treatmentSummary"></div></div>
+  </div>
+  <p class="footer-note">التقرير الحالي نقدي مبسط: التحصيلات ناقص المبالغ المرتجعة والمصروفات المسجلة. لا يمثل صافي الربح المحاسبي النهائي قبل استكمال المشتريات والمخزون ومستحقات الأطباء والالتزامات.</p>
+</section>
+
+<section class="page" id="page-settings">
+  <div class="section-title"><h2>الإعدادات والنسخ الاحتياطي</h2></div>
+  <div class="card"><h3>إدارة البيانات التجريبية</h3><p>يمكنك تصدير بياناتك إلى ملف JSON للاحتفاظ بنسخة احتياطية. النسخة الحالية لا تزامن البيانات بين أجهزة متعددة ولا تحتوي على نظام دخول آمن فعلي.</p><div class="form-actions"><button id="exportBtn2">تصدير نسخة JSON</button><button class="secondary" id="importBtn">استيراد نسخة JSON</button><input type="file" id="importFile" accept=".json,application/json" hidden><button class="danger" id="resetBtn">مسح كل بيانات التجربة</button></div><p class="footer-note">لا تضع بيانات شخصية حقيقية أو معلومات طبية حساسة في النسخة التجريبية قبل بناء قاعدة بيانات مؤمنة وصلاحيات فعلية وسجل تدقيق ونسخ احتياطي مشفر.</p></div>
+  <div class="card" style="margin-top:14px"><h3>صلاحيات مبدئية مقترحة</h3><table><thead><tr><th>الدور</th><th>الوصول المقترح</th></tr></thead><tbody><tr><td>المالك / المدير</td><td>كل الأقسام والتقارير والإعدادات</td></tr><tr><td>الاستقبال</td><td>ملفات المرضى والمواعيد وخطة العلاج؛ دون تقارير الربحية الشاملة</td></tr><tr><td>المحاسب</td><td>التحصيلات والمصروفات والتقارير المالية والموردون</td></tr><tr><td>الطبيب</td><td>ملفات الحالات الطبية والإجراءات المسندة إليه فقط</td></tr></tbody></table><p class="small">اختيار الدور في أعلى الصفحة توضيحي فقط في هذه النسخة، وليس حماية أمنية فعلية.</p></div>
+</section>
+</div>
+</main>
+</div>
+<script>
+const KEY='dentistClinicMVP_v1';
+const blank=()=>({patients:[],treatments:[],payments:[],expenses:[],inventory:[],suppliers:[],doctors:[],seq:{patient:1,treatment:1,payment:1,expense:1,inventory:1,supplier:1,doctor:1}});
+let db=loadDB();
+function loadDB(){try{return {...blank(),...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){return blank()}}
+function save(){localStorage.setItem(KEY,JSON.stringify(db));renderAll()}
+function id(type){let n=db.seq[type]||1;db.seq[type]=n+1;return n}
+function money(n){return (Number(n)||0).toLocaleString('ar-EG',{minimumFractionDigits:2,maximumFractionDigits:2})+' ج.م'}
+function today(){return new Date().toISOString().slice(0,10)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function patientName(pid){return db.patients.find(x=>x.id===Number(pid))?.name||'—'}
+function doctorName(did){return db.doctors.find(x=>x.id===Number(did))?.name||'—'}
+function supplierName(sid){return db.suppliers.find(x=>x.id===Number(sid))?.name||'—'}
+function treatmentTotal(pid){return db.treatments.filter(t=>t.patientId===Number(pid)&&t.status!=='ملغي').reduce((a,t)=>a+Number(t.amount||0),0)}
+function patientPaid(pid){return db.payments.filter(p=>p.patientId===Number(pid)&&['in','refund'].includes(p.type)).reduce((a,p)=>a+(p.type==='in'?1:-1)*Number(p.amount||0),0)}
+function cashNet(){return db.payments.reduce((a,p)=>a+(['in','otherIn'].includes(p.type)?1:-1)*Number(p.amount||0),0)-db.expenses.reduce((a,e)=>a+Number(e.amount||0),0)}
+function signedPay(p){return ['in','otherIn'].includes(p.type)?1:-1}
+function paymentLabel(t){return ({in:'تحصيل من مريض',refund:'رد مبلغ لمريض',otherIn:'إيراد آخر',otherOut:'صرف من الخزنة'})[t]||t}
+function setTodayInputs(){['treatDate','paymentDate','expenseDate'].forEach(x=>{let e=document.getElementById(x);if(e&&!e.value)e.value=today()});document.getElementById('today').textContent=new Date().toLocaleDateString('ar-EG',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}
+function showPage(page){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+page));document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));const labels={dashboard:'لوحة التحكم',patients:'ملفات المرضى',treatments:'العلاج والحالات',payments:'التحصيلات والخزنة',expenses:'المصروفات',inventory:'المخزون والخامات',suppliers:'الموردون',doctors:'الأطباء',reports:'التقارير',settings:'الإعدادات'};document.getElementById('pageTitle').textContent=labels[page]||'عيادتي';if(page==='reports')renderReports()}
+document.getElementById('nav').addEventListener('click',e=>{let b=e.target.closest('button[data-page]');if(b)showPage(b.dataset.page)});
+function fillSelect(idName,items,labelFn,placeholder='— اختر —'){const el=document.getElementById(idName);if(!el)return;const old=el.value;el.innerHTML='<option value="">'+placeholder+'</option>'+items.map(x=>`<option value="${x.id}">${esc(labelFn(x))}</option>`).join('');if(items.some(x=>String(x.id)===old))el.value=old}
+function renderMetrics(){const income=db.payments.filter(p=>p.type==='in').reduce((a,p)=>a+ +p.amount,0);const refunds=db.payments.filter(p=>p.type==='refund').reduce((a,p)=>a+ +p.amount,0);const expenses=db.expenses.reduce((a,e)=>a+ +e.amount,0);const outstanding=db.patients.reduce((a,p)=>a+Math.max(0,treatmentTotal(p.id)-patientPaid(p.id)),0);const cards=[['تحصيلات المرضى',money(income),'إجمالي الحركات المسجلة'],['المبالغ المرتجعة',money(refunds),'تُخصم من التحصيلات'],['مصروفات مسجلة',money(expenses),'من سجل المصروفات'],['صافي الحركة النقدية',money(cashNet()),'بعد المرتجعات والمصروفات'],['مستحقات المرضى',money(outstanding),'قيمة العلاج ناقص المدفوع'],['عدد المرضى',db.patients.length,'ملفات مسجلة'],['حالات مكتملة',db.treatments.filter(t=>t.status==='مكتمل').length,'إجراءات علاجية'],['قيمة المخزون',money(db.inventory.reduce((a,i)=>a+i.qty*i.cost,0)),'حسب الرصيد وتكلفة الوحدة']];document.getElementById('metrics').innerHTML=cards.map(c=>`<div class="card metric"><div class="label">${c[0]}</div><div class="value">${c[1]}</div><div class="sub">${c[2]}</div></div>`).join('')}
+function renderPatients(){const q=(document.getElementById('patientSearch')?.value||'').trim().toLowerCase();const rows=db.patients.filter(p=>(p.name+' '+p.phone).toLowerCase().includes(q));document.getElementById('patientsTable').innerHTML=rows.map(p=>{let total=treatmentTotal(p.id),paid=patientPaid(p.id);return `<tr><td>P-${String(p.id).padStart(4,'0')}</td><td>${esc(p.name)}</td><td>${esc(p.phone||'—')}</td><td>${money(total)}</td><td>${money(paid)}</td><td>${money(total-paid)}</td><td>${esc(p.createdAt||'—')}</td></tr>`}).join('')||'<tr><td colspan="7" class="empty">لا يوجد مرضى مسجلون</td></tr>'}
+function renderTreatments(){document.getElementById('treatmentsTable').innerHTML=db.treatments.slice().reverse().map(t=>`<tr><td>${esc(t.date||'—')}</td><td>${esc(patientName(t.patientId))}</td><td>${esc(t.procedure)}</td><td>${esc(doctorName(t.doctorId))}</td><td>${money(t.amount)}</td><td>${money(t.materialCost)}</td><td><span class="pill ${t.status==='ملغي'?'red':t.status==='مكتمل'?'':'warn'}">${esc(t.status)}</span></td></tr>`).join('')||'<tr><td colspan="7" class="empty">لا توجد إجراءات مسجلة</td></tr>'}
+function renderPayments(){let f=document.getElementById('paymentFilter')?.value||'all';let rows=db.payments.filter(p=>f==='all'||p.type===f).slice().reverse();document.getElementById('paymentsTable').innerHTML=rows.map(p=>`<tr><td>TX-${String(p.id).padStart(4,'0')}</td><td>${esc(p.date)}</td><td>${esc(patientName(p.patientId))}</td><td>${esc(paymentLabel(p.type))}</td><td>${esc(p.method||'—')}</td><td>${money(p.amount)}</td><td>${esc(p.notes||'—')}</td></tr>`).join('')||'<tr><td colspan="7" class="empty">لا توجد حركات مالية</td></tr>';document.getElementById('recentPayments').innerHTML=db.payments.slice().reverse().slice(0,5).map(p=>`<tr><td>${esc(p.date)}</td><td>${esc(patientName(p.patientId))}</td><td>${esc(paymentLabel(p.type))}</td><td>${esc(p.method||'—')}</td><td>${money(p.amount)}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">لا توجد حركات حتى الآن</td></tr>'}
+function renderExpenses(){document.getElementById('expensesTable').innerHTML=db.expenses.slice().reverse().map(e=>`<tr><td>${esc(e.date)}</td><td>${esc(e.category)}</td><td>${esc(supplierName(e.supplierId))}</td><td>${esc(e.method||'—')}</td><td>${money(e.amount)}</td><td>${esc(e.notes||'—')}</td></tr>`).join('')||'<tr><td colspan="6" class="empty">لا توجد مصروفات مسجلة</td></tr>'}
+function renderInventory(){document.getElementById('inventoryTable').innerHTML=db.inventory.map(i=>{let low=i.qty<=i.minQty;return `<tr><td>${esc(i.name)}</td><td>${i.qty}</td><td>${esc(i.unit)}</td><td>${i.minQty}</td><td>${money(i.cost)}</td><td>${money(i.qty*i.cost)}</td><td>${esc(i.expiry||'—')}</td><td><span class="pill ${low?'red':''}">${low?'إعادة طلب':'متوفر'}</span></td></tr>`}).join('')||'<tr><td colspan="8" class="empty">لا توجد أصناف مسجلة</td></tr>';document.getElementById('stockAlerts').innerHTML=db.inventory.filter(i=>i.qty<=i.minQty).map(i=>`<tr><td>${esc(i.name)}</td><td>${i.qty} ${esc(i.unit)}</td><td>${i.minQty}</td></tr>`).join('')||'<tr><td colspan="3" class="empty">لا توجد تنبيهات مخزون</td></tr>'}
+function renderSuppliers(){document.getElementById('suppliersTable').innerHTML=db.suppliers.map(s=>`<tr><td>${esc(s.name)}</td><td>${esc(s.phone||'—')}</td><td>${money(s.balance)}</td><td>${esc(s.notes||'—')}</td></tr>`).join('')||'<tr><td colspan="4" class="empty">لا يوجد موردون</td></tr>'}
+function renderDoctors(){document.getElementById('doctorsTable').innerHTML=db.doctors.map(d=>{let ts=db.treatments.filter(t=>t.doctorId===d.id);return `<tr><td>${esc(d.name)}</td><td>${esc(d.phone||'—')}</td><td>${esc(d.payType)}</td><td>${d.payType==='نسبة'?d.payValue+'%':money(d.payValue)}</td><td>${ts.length}</td><td>${money(ts.filter(t=>t.status==='مكتمل').reduce((a,t)=>a+ +t.amount,0))}</td></tr>`}).join('')||'<tr><td colspan="6" class="empty">لا يوجد أطباء</td></tr>'}
+function renderOps(){document.getElementById('opsSummary').innerHTML=`<p>عدد ملفات المرضى: <b>${db.patients.length}</b></p><p>إجراءات علاجية مسجلة: <b>${db.treatments.length}</b></p><p>أصناف المخزون: <b>${db.inventory.length}</b></p><p>موردون مسجلون: <b>${db.suppliers.length}</b></p><p>أطباء مسجلون: <b>${db.doctors.length}</b></p><p>إجمالي المبالغ المستحقة للموردين: <b>${money(db.suppliers.reduce((a,s)=>a+ +s.balance,0))}</b></p>`}
+function renderReports(){const from=document.getElementById('reportFrom').value||'0000-01-01',to=document.getElementById('reportTo').value||'9999-12-31';const pays=db.payments.filter(p=>p.date>=from&&p.date<=to),exps=db.expenses.filter(e=>e.date>=from&&e.date<=to),treats=db.treatments.filter(t=>t.date>=from&&t.date<=to);const collected=pays.filter(p=>p.type==='in').reduce((a,p)=>a+ +p.amount,0),refund=pays.filter(p=>p.type==='refund').reduce((a,p)=>a+ +p.amount,0),other=pays.filter(p=>p.type==='otherIn').reduce((a,p)=>a+ +p.amount,0),otherOut=pays.filter(p=>p.type==='otherOut').reduce((a,p)=>a+ +p.amount,0),expense=exps.reduce((a,e)=>a+ +e.amount,0);document.getElementById('reportMetrics').innerHTML=[['تحصيلات مرضى',money(collected)],['مرتجعات',money(refund)],['مصروفات',money(expense)],['صافي النقد',money(collected-refund+other-otherOut-expense)]].map(c=>`<div class="card metric"><div class="label">${c[0]}</div><div class="value">${c[1]}</div></div>`).join('');document.getElementById('financialSummary').innerHTML=`<p>تحصيلات المرضى: <b>${money(collected)}</b></p><p>مرتجعات المرضى: <b>${money(refund)}</b></p><p>إيرادات أخرى: <b>${money(other)}</b></p><p>مصروفات سجل المصروفات: <b>${money(expense)}</b></p><p>صرف آخر من الخزنة: <b>${money(otherOut)}</b></p><hr><p>صافي الحركة النقدية: <b>${money(collected-refund+other-otherOut-expense)}</b></p>`;document.getElementById('treatmentSummary').innerHTML=`<p>عدد الإجراءات في الفترة: <b>${treats.length}</b></p><p>قيمة الإجراءات غير الملغاة: <b>${money(treats.filter(t=>t.status!=='ملغي').reduce((a,t)=>a+ +t.amount,0))}</b></p><p>تكلفة الخامات التقديرية المسجلة: <b>${money(treats.reduce((a,t)=>a+ +t.materialCost,0))}</b></p><p>حالات مكتملة: <b>${treats.filter(t=>t.status==='مكتمل').length}</b></p>`}
+function renderAll(){fillSelect('treatPatient',db.patients,p=>p.name);fillSelect('paymentPatient',db.patients,p=>p.name,'بدون مريض / اختياري');fillSelect('treatDoctor',db.doctors,d=>d.name);fillSelect('expenseSupplier',db.suppliers,s=>s.name,'بدون مورد');renderMetrics();renderPatients();renderTreatments();renderPayments();renderExpenses();renderInventory();renderSuppliers();renderDoctors();renderOps();renderReports()}
+function formObj(form){return Object.fromEntries(new FormData(form).entries())}
+document.getElementById('patientForm').addEventListener('submit',e=>{e.preventDefault();let x=formObj(e.target);db.patients.push({id:id('patient'),...x,createdAt:today()});e.target.reset();save()});
+document.getElementById('treatmentForm').addEventListener('submit',e=>{e.preventDefault();let x=formObj(e.target);if(!x.patientId)return alert('اختر المريض أولًا');db.treatments.push({id:id('treatment'),...x,patientId:Number(x.patientId),doctorId:x.doctorId?Number(x.doctorId):null,amount:Number(x.amount),materialCost:Number(x.materialCost||0),date:x.date||today()});e.target.reset();document.getElementById('treatDate').value=today();save()});
+document.getElementById('paymentForm').addEventListener('submit',e=>{e.preventDefault();let x=formObj(e.target);const amount=Number(x.amount);if(x.type==='in'&&x.patientId){const due=treatmentTotal(Number(x.patientId))-patientPaid(Number(x.patientId));if(amount>due+0.001&&!confirm('المبلغ أكبر من رصيد العلاج المتبقي للمريض. هل تريد تسجيله رغم ذلك؟'))return;}db.payments.push({id:id('payment'),...x,patientId:x.patientId?Number(x.patientId):null,amount,date:x.date||today()});e.target.reset();document.getElementById('paymentDate').value=today();save()});
+document.getElementById('expenseForm').addEventListener('submit',e=>{e.preventDefault();let x=formObj(e.target);db.expenses.push({id:id('expense'),...x,supplierId:x.supplierId?Number(x.supplierId):null,amount:Number(x.amount),date:x.date||today()});e.target.reset();document.getElementById('expenseDate').value=today();save()});
+document.getElementById('inventoryForm').addEventListener('submit',e=>{e.preventDefault();let x=formObj(e.target);const found=db.inventory.find(i=>i.name.trim().toLowerCase()===x.name.trim().toLowerCase());if(found){if(!confirm('الصنف موجود بالفعل. هل تريد استبدال رصيده وبياناته بالقيم الجديدة؟'))return;Object.assign(found,{...x,qty:Number(x.qty),minQty:Number(x.minQty||0),cost:Number(x.cost||0)});}else db.inventory.push({id:id('inventory'),...x,qty:Number(x.qty),minQty:Number(x.minQty||0),cost:Number(x.cost||0)});e.target.reset();save()});
+document.getElementById('supplierForm').addEventListener('submit',e=>{e.preventDefault();let x=formObj(e.target);db.suppliers.push({id:id('supplier'),...x,balance:Number(x.balance||0)});e.target.reset();save()});
+document.getElementById('doctorForm').addEventListener('submit',e=>{e.preventDefault();let x=formObj(e.target);db.doctors.push({id:id('doctor'),...x,payValue:Number(x.payValue||0)});e.target.reset();save()});
+document.getElementById('patientSearch').addEventListener('input',renderPatients);document.getElementById('paymentFilter').addEventListener('change',renderPayments);document.getElementById('runReport').addEventListener('click',renderReports);document.getElementById('printReport').addEventListener('click',()=>window.print());
+function exportJSON(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='dental-clinic-backup-'+today()+'.json';a.click();URL.revokeObjectURL(a.href)}
+document.getElementById('exportBtn').addEventListener('click',exportJSON);document.getElementById('exportBtn2').addEventListener('click',exportJSON);document.getElementById('importBtn').addEventListener('click',()=>document.getElementById('importFile').click());document.getElementById('importFile').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const parsed=JSON.parse(await file.text());if(!parsed.patients||!parsed.payments)throw new Error();if(!confirm('سيتم استبدال بيانات النسخة الحالية بالملف المستورد. متابعة؟'))return;db={...blank(),...parsed};save();alert('تم استيراد البيانات')}catch(err){alert('الملف غير صالح أو لا يطابق تنسيق النسخة')}e.target.value=''});
+document.getElementById('resetBtn').addEventListener('click',()=>{if(confirm('تحذير: سيتم مسح كل البيانات المحلية نهائيًا. هل أنت متأكد؟')&&confirm('تأكيد أخير: هل صدّرت نسخة احتياطية؟')){db=blank();save()}});
+document.getElementById('role').addEventListener('change',e=>{if(e.target.value!=='owner')alert('تغيير الدور هنا للعرض فقط. الصلاحيات الحقيقية وتسجيل الدخول غير مفعّلين في النسخة التجريبية.')});
+document.getElementById('reportFrom').value=new Date(new Date().getFullYear(),new Date().getMonth(),1).toISOString().slice(0,10);document.getElementById('reportTo').value=today();setTodayInputs();renderAll();
+</script>
+</body></html>
